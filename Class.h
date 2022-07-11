@@ -4,9 +4,11 @@
 
 class Class {
 public:
-	Class(int cId, int** sIdList);
+	Class(int cId,char* teacher);
 	void Add_Stu(int sid);
+	void saveCls();
 private:
 	int cId; // class id
-	int** sIdList;	// the list of students attending this class
+	char teacher[20]; // the name of the teacher
+	char clsname[20]; // the name of the class
 };

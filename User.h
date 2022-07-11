@@ -1,23 +1,33 @@
 #pragma once
 #include "Class.h"
-#include <string>
+#include <fstream>
+#include <iostream>
+using namespace std;
+
+struct GPA
+{
+	Class cls;
+	float grades;
+};
 
 class User
 {
 public:
-	User(int a,int id,Class** cls,int num);
+	User();
 	~User();
 	Class** list_all_classes();
-	void Add_Class(Class cls);
-	void Dlt_Class(Class cls);
 	static int nUser;
-private:
+	char* getPswd();
+	int getId();
+	int getAuthority();
+	char* getName();
+	friend ofstream& operator<<(ofstream& ofs, User& usr);
+	friend ifstream& operator>>(ifstream& ifs, User& usr);
+protected:
 	int authority;	// to distinguish pupils and teachers, 0 for stus, 1 for teachers.
 	int id;	// id of user; unique to all
-	string name;
+	char name[20];
 	//int** cid_list; // the list of class id
-	int nCls; // number of classes
-	Class** cList; // the list of classes.
-	string pswd;
+	char pswd[20]; //password
 };
 

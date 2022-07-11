@@ -1,17 +1,22 @@
 #pragma once
+#include "User.h"
+
+
+
 class Interface
 {
 public:
 	Interface();
-	virtual void init() = 0;	// to initiate the interface using user's info
-	void alter_GPA();
-	void show_GPA();
-	virtual void login() = 0;
-	virtual void save() = 0;
-private:
-	int authority;	// representing the identity of users, 0 for students, 1 for teachers
-	int id;	// the identification code of users
-	int cid;	// the identification code of class
-	User** usrs;	// array of users
+	~Interface();
+	void init();	// to initiate the interface using user's info file and class info file;
+	int login();	// return the authority of the user (0 for students, 1 for teachers)
+	void save();	// save all info into one file
+	void addUser();
+	int isIdExist(int id);	// return the subindex of User who had the same id in the User array, 
+							// or return -1 if no match exists.
+	virtual void menu();
+protected:
+	User** users;
+	int Unum;
 };
 

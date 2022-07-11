@@ -1,12 +1,10 @@
 #pragma once
 #include "User.h"
 
-class Student
-{
+class Student:public User{
 public:
-	Student();
+	Student(int idCode,char* names,char* password);
 	~Student();
-
 private:
 
 };
