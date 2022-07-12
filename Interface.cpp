@@ -9,6 +9,33 @@
 #define ClassFile "ClassInfo.txt"
 using namespace std;
 
+Interface::Interface() {
+	fstream file;
+	file.open(UserFile, ios::in);
+	// detect if the file exist, if not, end the program
+	if (!file.is_open()) {
+		cout << "No Userfile! Please CHECK! " << endl
+			<< "System will SHUT DOWN." << endl;
+		Unum = 0;
+		users = NULL;
+		file.close();
+		system("pause");
+		exit(-1);
+		return;
+	}
+	// detect if the file contains any info by check if it's the end of file
+	char ch;
+	file >> ch;
+	if (file.eof())
+	{
+		cout << "No info in user file.\n";
+		Unum = 0;
+		users = NULL;
+	}
+	// else, the file exists and got content.
+	init();
+}
+
 void Interface::init() {
 	fstream file;
 	file.open(UserFile, ios::in);
@@ -34,7 +61,7 @@ void Interface::init() {
 	file.close();
 }
 
-int Interface::login() {
+int Interface::login(User* &usr) {
 	bool flag = true;
 	while (flag) {
 		switch (this->Unum)
@@ -50,7 +77,7 @@ int Interface::login() {
 			while (true){
 				cout << "Please put down your ID: \n";
 				cin >> Id;
-				index = isIdExist(Id);
+				index = locOfId(Id);
 				if (index == -1)
 					cout << "No user with match id exist, please retry! \n";
 				else
@@ -64,6 +91,9 @@ int Interface::login() {
 				if (isPswdCrct == 0) {
 					flag = false;
 					/*return 0;*/
+					usr = users[index];
+					system("clc");
+					cout << "Welcome to the GPA management system " << usr->getName() << endl;
 					return users[index]->getAuthority();
 					break;
 				}
@@ -76,6 +106,7 @@ int Interface::login() {
 	}
 	return 0;
 }
+
 
 Interface::~Interface() {
 	delete[] users;
@@ -128,4 +159,25 @@ void Interface::addUser() {
 	}
 	cout << "Successfully added one user\n";
 	save();
+}
+
+int Interface::locOfId(int id) {
+	int index = -1;
+	for (int i = 0; i < this->Unum; i++)
+	{
+		if (this->users[i]->getId() == id) { // to find the User
+			index = i;
+			break;
+		}
+	}
+	return index;
+}
+
+void Interface::save() {
+	ofstream file;
+	file.open(UserFile, ios::out);
+	for (int i = 0; i < Unum; i++) {
+		file << users[i];
+	}
+	file.close();
 }

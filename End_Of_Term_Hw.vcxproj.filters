@@ -33,6 +33,15 @@
     <ClInclude Include="Teacher.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="StudentMenu.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TeacherMenu.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="User.cpp">
@@ -51,6 +60,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Teacher.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Class.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

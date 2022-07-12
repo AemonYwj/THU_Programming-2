@@ -6,9 +6,12 @@
 using namespace std;
 
 
+class GPA :public Class, public Student {
+
+};
+
 class StudentInterface :public Interface, public Student {
 public:
-	void menu();
-	void save();
-	void init();
+	virtual void menu();
+	
 };

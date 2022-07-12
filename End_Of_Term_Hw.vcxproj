@@ -141,12 +141,16 @@
   <ItemGroup>
     <ClInclude Include="Class.h" />
     <ClInclude Include="Interface.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="Student.h" />
     <ClInclude Include="StudentInterface.h" />
+    <ClInclude Include="StudentMenu.h" />
     <ClInclude Include="Teacher.h" />
+    <ClInclude Include="TeacherMenu.h" />
     <ClInclude Include="User.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Class.cpp" />
     <ClCompile Include="Interface.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Student.cpp" />
