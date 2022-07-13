@@ -15,7 +15,7 @@ private:
 
 };
 
-int TeacherMenu::showMenu() {
+int showMenu() {
 	cout << "Please choose a operation by entering the starting serial number;\n"
 		<< "1.Show GPA info;\n"
 		<< "2.Register a class that you teach;\n"
@@ -24,7 +24,7 @@ int TeacherMenu::showMenu() {
 		<< "0.Exit system;\n";
 	int chc;
 	cin >> chc;
-	while (chc != 0 && chc != 1 && chc != 2 && chc != 3 && chc!=4) {
+	while (chc != 0 && chc != 1 && chc != 2 && chc != 3 && chc != 4) {
 		cout << "Please enter the serial number of the operation, such as 1 for 'Show GPA info'.\n";
 		cout << "No other input will be seen as valid.\n";
 		cin >> chc;

@@ -1,12 +1,8 @@
 #include "Interface.h"
-#include "User.h"
-#include "Student.h"
-#include "Teacher.h"
 #include <iostream>
 #include <fstream>
 #include <conio.h> 
 #define UserFile "UserInfo.txt"
-#define ClassFile "ClassInfo.txt"
 using namespace std;
 
 Interface::Interface() {
@@ -16,7 +12,7 @@ Interface::Interface() {
 	if (!file.is_open()) {
 		cout << "No Userfile! Please CHECK! " << endl
 			<< "System will SHUT DOWN." << endl;
-		Unum = 0;
+		uNum = 0;
 		users = NULL;
 		file.close();
 		system("pause");
@@ -29,7 +25,7 @@ Interface::Interface() {
 	if (file.eof())
 	{
 		cout << "No info in user file.\n";
-		Unum = 0;
+		uNum = 0;
 		users = NULL;
 	}
 	// else, the file exists and got content.
@@ -37,26 +33,32 @@ Interface::Interface() {
 }
 
 void Interface::init() {
-	fstream file;
+	ifstream file;
 	file.open(UserFile, ios::in);
 	char temp[20], temp2[20];
 	int id, authority;
 	char name[20], pswd[20];
 	int index = 0;
-	while (file >> id >> authority >> temp >> name >> temp2 >> pswd) {
+	User* tempUsr = new User;
+	while (file >> *tempUsr) {
 		index++;
 	}	// get the total amount of users in the file
-	this->Unum = index;
+	file.close();
+	file.open(UserFile, ios::in);
+	this->uNum = index;
 	index = 0;
-	users = new User*[Unum];
-	while (file >> id >> authority >> temp >> name >> temp2 >> pswd) {
+	users = new User*[uNum];
+	while (file >> *tempUsr) {
 		User* usr = NULL;
 		if (id == 0)
-			usr = new Student(id, name, pswd);
+			usr = new Student(id, name, pswd, tempUsr->getcIds());
 		else if (id == 1)
-			usr = new Teacher(id, name, pswd);
+			usr = new Teacher(id, name, pswd, tempUsr->getcIds());
 		users[index] = usr;
 		index++;
+		User* tempUsr = new User;	
+		// there may be a problem of over using the memory space...
+		// I am not sure anyway... will fix it someday, maybe, if I could catch the ddl...
 	}
 	file.close();
 }
@@ -64,7 +66,7 @@ void Interface::init() {
 int Interface::login(User* &usr) {
 	bool flag = true;
 	while (flag) {
-		switch (this->Unum)
+		switch (this->uNum)
 		{
 		case 0:	// no any Users
 			cout << "Please initiate the system by signing up: \n";
@@ -92,6 +94,7 @@ int Interface::login(User* &usr) {
 					flag = false;
 					/*return 0;*/
 					usr = users[index];
+					this->lgUsr = users[index];
 					system("clc");
 					cout << "Welcome to the GPA management system " << usr->getName() << endl;
 					return users[index]->getAuthority();
@@ -113,10 +116,10 @@ Interface::~Interface() {
 }
 
 void Interface::addUser() {
-	Unum++;
-	User** newUsrs = new User * [Unum];	// creating a temperary array to store the data.
+	uNum++;
+	User** newUsrs = new User * [uNum];	// creating a temperary array to store the data.
 	if (this->users != NULL) { // copying original space into the new array
-		for (int i = 0; i < this->Unum-1; i++) {
+		for (int i = 0; i < this->uNum-1; i++) {
 			newUsrs[i] = this->users[i];
 		}
 	}
@@ -132,6 +135,8 @@ void Interface::addUser() {
 	}
 	int id;
 	char name[20],pswd[20];
+	int classid = 0;
+	clsls* newCls = NULL;
 	switch (chc)
 	{
 	case 1:
@@ -141,7 +146,13 @@ void Interface::addUser() {
 		cin >> name;
 		cout << "Please enter your password\n";
 		cin >> pswd;
-		newUsrs[Unum] = new Student(id, name, pswd);
+		cout << "Please enter one by one the id of the classes you are attending, and enter '-1' to end your operation\n";
+		while (classid != -1)
+		{
+			cin >> classid;
+			newCls = new clsls(classid, newCls);
+		}
+		newUsrs[uNum] = new Student(id, name, pswd,newCls);
 		delete[] users;	// release the original space
 		users = newUsrs;	// relocating the ptr
 		break;
@@ -152,7 +163,13 @@ void Interface::addUser() {
 		cin >> name;
 		cout << "Please enter your password\n";
 		cin >> pswd;
-		newUsrs[Unum] = new Teacher(id, name, pswd);
+		cout << "Please enter one by one the id of the classes you are lecturing, and put '-1' to end your operation\n";
+		while (classid != -1)
+		{
+			cin >> classid;
+			newCls = new clsls(classid, newCls);
+		}
+		newUsrs[uNum] = new Teacher(id, name, pswd, newCls);
 		delete[] users;	
 		users = newUsrs;
 		break;
@@ -163,7 +180,7 @@ void Interface::addUser() {
 
 int Interface::locOfId(int id) {
 	int index = -1;
-	for (int i = 0; i < this->Unum; i++)
+	for (int i = 0; i < this->uNum; i++)
 	{
 		if (this->users[i]->getId() == id) { // to find the User
 			index = i;
@@ -176,8 +193,19 @@ int Interface::locOfId(int id) {
 void Interface::save() {
 	ofstream file;
 	file.open(UserFile, ios::out);
-	for (int i = 0; i < Unum; i++) {
+	for (int i = 0; i < uNum; i++) {
 		file << users[i];
 	}
 	file.close();
+}
+
+void Interface::list_all_classes(Class**& clsptr, int& clsNum) {
+	clsls* lgCls = lgUsr->getcIds();
+	while (lgCls != NULL)
+	{
+
+	}
+}
+User** Interface::getUsers() {
+	return users;
 }

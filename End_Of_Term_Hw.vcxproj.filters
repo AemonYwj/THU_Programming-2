@@ -42,6 +42,9 @@
     <ClInclude Include="TeacherMenu.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ClassInterface.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="User.cpp">
@@ -63,6 +66,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Class.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ClassInterface.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
