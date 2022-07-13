@@ -4,7 +4,7 @@
 
 class Teacher :public User {
 public:
-	Teacher(int idCode, char* names, char* password);
+	Teacher(int idCode, char* names, char* password, clsls* cids);
 	~Teacher();
 private:
 

@@ -8,7 +8,6 @@ class StudentMenu:public Menu{
 public:
 	virtual int showMenu();
 	virtual int show1stMenu();
-	virtual int show1stMenu();
 	virtual int show2ndMenu();
 	virtual int show3thMenu();
 	virtual int show4thMenu();
@@ -37,7 +36,7 @@ int StudentMenu::show1stMenu() {
 	cout << "Please choose a operation by entering the starting serial number;\n"
 		<< "1.Show grades of all class;\n"
 		<< "2.Show grade of one specific class;\n"
-		<< "3.Calculate "
+		<< "3.Calculate general GPA;\n"
 		<< "0.Return to previous menu;\n";
 	int chc;
 	cin >> chc;
