@@ -50,9 +50,6 @@
     <ClCompile Include="User.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="StuIdentnterface.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="Student.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -69,6 +66,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="ClassInterface.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="StudentMenu.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TeacherMenu.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

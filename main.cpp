@@ -3,15 +3,16 @@
 #include "Student.h"
 #include "StudentInterface.h"
 #include "User.h"
-#include <iostream>
-#include <fstream>
-#include "Menu.h"
+#include "Teacher.h"
 #include "StudentMenu.h"
 #include "TeacherMenu.h"
 #include "ClassInterface.h"
+
+#include <iostream>
+#include <fstream>
 using namespace std;
 
-int showMenu(Menu* &mn,const int ath,int choice) {	// a universal template for showing menus by checking authority and the choice of menus needed.
+int showMenu(Menu* mn,const int ath,int choice) {	// a universal template for showing menus by checking authority and the choice of menus needed.
 	if (ath == 0)
 		mn = new StudentMenu;
 	else if (ath == 1)
@@ -26,11 +27,9 @@ int showMenu(Menu* &mn,const int ath,int choice) {	// a universal template for s
 	case 1:
 		return mn->show1stMenu();
 		break;
-	case 2:
-		return mn->show2ndMenu();
+	case 4:
+		return mn->show4thMenu();
 		break;
-	case 3:
-		return mn->show3thMenu();
 	default:
 		break;
 	}
@@ -41,7 +40,7 @@ void WrapUpMenu(Interface& itf, ClassInterface& clsItf, User* usr, int const ath
 	bool flag = true;	
 	bool flag1 = true;	
 	int chc, chc1;	// to store the choice user made in secondary menu
-	Menu* mn;
+	Menu* mn = new StudentMenu;
 	while (flag)
 	{
 		chc = showMenu(mn, ath, 0);	
@@ -83,6 +82,36 @@ void WrapUpMenu(Interface& itf, ClassInterface& clsItf, User* usr, int const ath
 				}
 			}
 			break;
+		case 1:	// teacher
+			while (flag1)
+			{
+				switch (chc)
+				{
+				case 1:	// show GPA
+					chc1 = showMenu(mn, ath, chc);
+					switch (chc1)
+					{
+					case 1:
+						clsItf.showAllGPAInfo(usr);
+						break;
+					case 2:
+						clsItf.showOneSpecGPAInfo(usr);
+						break;
+					case 3:
+						clsItf.calGPA(usr);
+						break;
+					default:
+						flag1 = false;
+						break;
+					}
+					break;
+				default:
+					break;
+				}
+			}
+
+
+			break;
 		default:
 			
 
@@ -98,29 +127,6 @@ int main() {
 	int ath = 0;	// authority of the login user
 	User* usr;	// current User
 	ath = itf.login(usr);
-	Menu* menu;
-	int level = 0;
-	int chc;	// the choice of the user
-	chc = showMenu(menu, ath, level);	// show the first level menu
-	int chc1;
-	switch (chc)
-	{
-	case 0:	// Exit System
-		cout << "See you next time!\n";
-		exit(0);
-		break;
-	default:
-		chc1 = showMenu(menu, ath, chc);	// show the secondary menu
-		break;
-	}
-
-
-
-
-
-
-
-
-
+	WrapUpMenu(itf, clsItf, usr, ath);
 	return 0;
 }

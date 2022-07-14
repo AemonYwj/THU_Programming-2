@@ -4,24 +4,23 @@
 using namespace std;
 
 User::~User() {
-	nUser -= 1;
+	delete[] cIds;
 }
 
 User::User(){
-	nUser += 1;
 	cIds = NULL;
 }
 
 int User::getId() {
-	return this->id;
+	return id;
 }
 
 int User::getAuthority() {
-	return this->authority;
+	return authority;
 }
 
 char* User::getName() {
-	return this->name;
+	return name;
 }
 
 clsls* User::getcIds() {
@@ -74,14 +73,24 @@ bool User::registerClass(int cid) {
 }
 
 bool User::withdrawClass(int cid) {
-	//clsls* ptr = cIds;
-	//clsls* tempPte = NULL;
-	//while (ptr != NULL)
-	//{
-	//	if (cid == ptr->cid)
-	//	{
-	//		
-	//	}
-	//	ptr = ptr->next;
-	//}
+	clsls* ptr = cIds;
+	clsls* tempPtr = ptr;
+	int i = 0;
+	while (ptr != NULL)
+	{
+		if (cid == ptr->cid)
+		{
+			tempPtr->next = ptr->next;
+			if (i==0)
+			{
+				cIds = cIds->next;
+			}
+			delete[] ptr;
+			return true;
+		}
+		tempPtr = ptr;
+		ptr = ptr->next;
+		i++;
+	}
+	return false;
 }

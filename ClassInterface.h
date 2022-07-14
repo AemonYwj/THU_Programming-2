@@ -16,12 +16,15 @@ public:
 							// or return -1 if no match exists.
 
 	void showAllClassInfo(User* usr);	// for teacher
+	void showDetailedInfo(User* usr);	// for teacher
 
 	void showAllGPAInfo(User* usr);	// for student
 	void showOneSpecGPAInfo(User* usr);	// for student
 	void calGPA(User* usr);	// for student
 	void registerClass(User* usr);
 	void withdrawClass(User* usr);
+
+	//--------------data--------------
 	Class** classes;
 	int cNum;
 	Interface* itfPtr;

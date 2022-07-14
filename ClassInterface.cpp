@@ -1,5 +1,4 @@
 #include "ClassInterface.h"
-
 #include <iostream>
 #include <fstream>
 #include <conio.h> 
@@ -29,10 +28,12 @@ ClassInterface::ClassInterface(Interface& intf) {
 		cout << "No info in user file.\n";
 		cNum = 0;
 		classes = NULL;
+		file.close();
+		return;
 	}
 	// else, the file exists and got content.
-	itfPtr = &intf;
 	init(intf);
+	file.close();
 }
 
 void ClassInterface::init(Interface& intf) {
@@ -88,6 +89,11 @@ void ClassInterface::addClass() {
 	cin >> clsName;
 	cout << "Please enter the id of the class you wish to add.\n";
 	cin >> cid;
+	while (locOfcId(cid) != -1)
+	{
+		cout << "The class with this id already exist, please re-enter the class id\n";
+		cin >> cid;
+	}
 	cout << "Please enter the credit of the class you wish to add.\n";
 	cin >> credit;
 	cout << "Please enter the id of the teacher you wish to add.\n";
@@ -109,8 +115,7 @@ void ClassInterface::addClass() {
 			break;
 		}
 	}
-	
-	newClass[cNum + 1] = new Class(cid, credit,tmpTch, clsName);
+	newClass[cNum] = new Class(cid, credit,tmpTch, clsName);
 	cNum++;
 	save();
 }
@@ -239,6 +244,12 @@ void ClassInterface::registerClass(User* usr) {
 	cin >> cid;
 	usr->registerClass(cid);
 	int index = locOfcId(cid);
+	if (index == -1)
+	{
+		cout << "No class with this id exist, please try again.\n";
+		system("pause");
+		return;
+	}
 	Class* cls = classes[index];
 	if (cls->addStudent(usr)) {
 		cout << "Successfully sign up for class " << "'" << cls->clsName << "'!\n";
@@ -250,5 +261,34 @@ void ClassInterface::withdrawClass(User* usr) {
 	int cid;
 	cout << "Please enter the id of the class from which you'd like to withdraw.\n";
 	cin >> cid;
-
+	int index = locOfcId(cid);
+	while (index == -1)
+	{
+		cout << "No class with this id exist, please try again.\n";
+		cin >> cid;
+		index = locOfcId(cid);
+	}
+	Class* cls = classes[index];
+	if (cls->deleteStudent(usr)) {
+		cout << "Successfully withdraw from classs " << "'" << cls->clsName << "'.\n";
+	}
+	else
+	{
+		cout << "Class withdrawal FAILED!.\n";
+	}
 }
+
+void ClassInterface::showAllGPAInfo(User* usr) {
+	clsls* cids = usr->getcIds();
+	int id = usr->getId();
+	while (cids != NULL)	// goint through all classes of this user
+	{
+		int index = locOfcId(cids->cid);
+		Class* cls = classes[index];
+		cout << "The average grade of class " << "'" << cls->clsName << "'" << " is "
+			<< cls->getAveGPA() << endl;
+		cids = cids->next;
+	}
+	system("pause");
+}
+

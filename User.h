@@ -20,7 +20,6 @@ class User
 public:
 	User();
 	~User();
-	static int nUser;
 	char* getPswd();
 	int getId();
 	int getAuthority();

@@ -24,12 +24,15 @@ Interface::Interface() {
 	file >> ch;
 	if (file.eof())
 	{
-		cout << "No info in user file.\n";
+		cout << "No user info in user file.\n";
 		uNum = 0;
-		users = NULL;
+		this->users = NULL;
+		file.close();
+		return;
 	}
 	// else, the file exists and got content.
 	init();
+	file.close();
 }
 
 void Interface::init() {
@@ -76,6 +79,19 @@ int Interface::login(User* &usr) {
 			addUser();
 			break;
 		default:
+			cout << "Do you wish to login by exsiting account or creating a new account?\n";
+			cout << "1.I will login.\n"
+				<< "2.I am new to the system, I'll sign up.\n";
+			int choice;
+			cin >> choice;
+			switch (choice)
+			{
+			case 1:
+				break;
+			default:
+				addUser();
+				break;
+			}
 			int Id;
 			bool flag1 = true;
 			int index;
@@ -98,7 +114,7 @@ int Interface::login(User* &usr) {
 					/*return 0;*/
 					usr = users[index];
 					this->lgUsr = users[index];
-					system("clc");
+					system("cls");
 					cout << "Welcome to the GPA management system " << usr->getName() << endl;
 					return users[index]->getAuthority();
 					break;
@@ -127,7 +143,7 @@ void Interface::addUser() {
 	}
 	int chc;
 	cout << "Please choose the new User's identity (enter number 1 or 2): " << endl
-		<< "1. Students" << endl	
+		<< "1.Students" << endl	
 		<< "2.Teachers" << endl;
 	cin >> chc;
 	while (chc!=1 && chc!=2)
@@ -144,32 +160,45 @@ void Interface::addUser() {
 	case 1:
 		cout << "Please enter your id\n";
 		cin >> id;
+		while (locOfId(id) != -1)
+		{
+			cout << "This id alread signed up for this system, please enter another.\n";
+			cin >> id;
+		}
 		cout << "Please enter your name\n";
 		cin >> name;
 		cout << "Please enter your password\n";
 		cin >> pswd;
 		cout << "Please enter one by one the id of the classes you are attending, and enter '-1' to end your operation\n";
+		cin >> classid;
 		while (classid != -1)
 		{
-			cin >> classid;
 			newCls = new clsls(classid, newCls);
+			cin >> classid;
 		}
-		newUsrs[uNum+1] = new Student(id, name, pswd,newCls);
+		newUsrs[uNum] = new Student(id, name, pswd,newCls);
+
 		delete[] users;	// release the original space
 		users = newUsrs;	// relocating the ptr
 		break;
 	case 2:
 		cout << "Please enter your id\n";
 		cin >> id;
+		while (locOfId(id) != -1)
+		{
+			cout << "This id alread signed up for this system, please enter another.\n";
+			cin >> id;
+		}
 		cout << "Please enter your name\n";
 		cin >> name;
 		cout << "Please enter your password\n";
 		cin >> pswd;
 		cout << "Please enter one by one the id of the classes you are lecturing, and put '-1' to end your operation\n";
+		cin >> classid;
 		while (classid != -1)
 		{
-			cin >> classid;
 			newCls = new clsls(classid, newCls);
+			cin >> classid;
 		}
 		newUsrs[uNum+1] = new Teacher(id, name, pswd, newCls);
 		delete[] users;	
@@ -185,7 +214,7 @@ int Interface::locOfId(int id) {
 	int index = -1;
 	for (int i = 0; i < this->uNum; i++)
 	{
-		if (this->users[i]->getId() == id) { // to find the User
+		if (users[i]->getId() == id) { // to find the User
 			index = i;
 			break;
 		}
@@ -197,7 +226,7 @@ void Interface::save() {
 	ofstream file;
 	file.open(UserFile, ios::out);
 	for (int i = 0; i < uNum; i++) {
-		file << users[i];
+		file << *users[i];
 	}
 	file.close();
 }
@@ -209,6 +238,11 @@ void Interface::list_all_classes(Class**& clsptr, int& clsNum) {
 
 	}
 }
+
 User** Interface::getUsers() {
 	return users;
+}
+
+int Interface::getUserNum() {
+	return uNum;
 }

@@ -156,8 +156,9 @@
     <ClCompile Include="Interface.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Student.cpp" />
-    <ClCompile Include="StuIdentnterface.cpp" />
+    <ClCompile Include="StudentMenu.cpp" />
     <ClCompile Include="Teacher.cpp" />
+    <ClCompile Include="TeacherMenu.cpp" />
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

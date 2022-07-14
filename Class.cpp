@@ -51,4 +51,133 @@ bool Class::addStudent(User* usr) {
 	return true;
 }
 
+bool Class::deleteStudent(User* usr) {
+	ListOfStdts* ptr = stdts;
+	ListOfStdts* tmpPtr = ptr;
+	int id = usr->getId();
+	int i = 0;
+	while (ptr != NULL)	// judging if this student already exist.
+	{
+		if (id == ptr->stdt->getId()) {
+			if (ptr->grade == -1) {
+				tmpPtr->nxstdt = ptr->nxstdt;
+				if (i == 0)
+				{
+					stdts = stdts->nxstdt;
+				}
+				delete[] ptr;
+				return true;
+			}
+			else
+			{
+				cout << "The grade of this class have already been uploaded, you may not withdraw from this class.\n";
+				return false;
+			}
+		}
+		i++;
+		tmpPtr = ptr;
+		ptr = ptr->nxstdt;
+	}
+	return false;
+}
 
+
+double Class::getAveGPA() {
+	ListOfStdts* ptr = stdts;
+	double totalGPA = 0.0;
+	int stdtNum = 0;
+	while (ptr != NULL)
+	{
+		if (ptr->grade != -1)	// if there is no grade info, the grade of students will be set to the default -1
+		{
+			totalGPA += 1;
+			stdtNum += 1;
+		}
+		ptr = ptr->nxstdt;
+	}
+	double aveGPA = totalGPA / stdtNum;
+	return aveGPA;
+}
+
+double Class::getHighestGPA() {
+	ListOfStdts* ptr = stdts;
+	double maxGPA = -1.0;
+	while (ptr != NULL)
+	{
+		if (ptr->grade > maxGPA)
+		{
+			maxGPA = ptr->grade;
+		}
+		ptr = ptr->nxstdt;
+	}
+	return maxGPA;
+}
+
+
+double Class::getLowestGPA() {
+	ListOfStdts* ptr = stdts;
+	double minGPA = 10.0;
+	while (ptr != NULL)
+	{
+		if (ptr->grade < minGPA && ptr->grade != -1)
+		{
+			minGPA = ptr->grade;
+		}
+		ptr = ptr->nxstdt;
+	}
+	if (minGPA != 10.0)
+	{
+		return minGPA;
+	}
+	else
+	{
+		return -1.0;
+	}
+
+}
+
+ListOfStdts* Class::getHighestStu() {
+	double maxGPA = getHighestGPA();
+	ListOfStdts* ptr = stdts;
+	ListOfStdts* output = NULL;
+	if (maxGPA == -1)
+	{
+		cout << "No grade have been uploaded, please upload the grade infomation first.\n";
+		return NULL;
+	}
+	else
+	{
+		while (ptr != NULL)
+		{
+			if (maxGPA == ptr->grade)
+			{
+				output = new ListOfStdts(ptr->stdt, ptr->grade, output);
+			}
+			ptr = ptr->nxstdt;
+		}
+	}
+	return output;
+}
+
+ListOfStdts* Class::getLowestStu() {
+	double minGPA = getLowestGPA();
+	ListOfStdts* ptr = stdts;
+	ListOfStdts* output = NULL;
+	if (minGPA == -1)
+	{
+		cout << "No grade have been uploaded, please upload the grade infomation first.\n";
+		return NULL;
+	}
+	else
+	{
+		while (ptr != NULL)
+		{
+			if (minGPA == ptr->grade)
+			{
+				output = new ListOfStdts(ptr->stdt, ptr->grade, output);
+			}
+			ptr = ptr->nxstdt;
+		}
+	}
+	return output;
+}

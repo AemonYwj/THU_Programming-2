@@ -21,6 +21,7 @@ public:
 	User** getUsers();
 	int getUserNum();
 protected:
+	//--------------data--------------
 	User** users;	// all users in the system
 	User* lgUsr;	// the logined user
 	int uNum;
