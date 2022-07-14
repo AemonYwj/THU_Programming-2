@@ -75,7 +75,7 @@ void WrapUpMenu(Interface& itf, ClassInterface& clsItf, User* usr, int const ath
 					break;
 				case 3:	// withdraw from one class
 					clsItf.withdrawClass(usr);
-					break
+					break;
 				default:	// Exit System
 					cout << "See you next time!\n";
 					exit(0);
