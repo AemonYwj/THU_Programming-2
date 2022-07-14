@@ -109,7 +109,7 @@ void ClassInterface::addClass() {
 			break;
 		}
 	}
-
+	
 	newClass[cNum + 1] = new Class(cid, credit,tmpTch, clsName);
 	cNum++;
 	save();
