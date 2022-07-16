@@ -83,6 +83,8 @@ void WrapUpMenu(Interface& itf, ClassInterface& clsItf, User* usr, int const ath
 					break;
 				default:	// Exit System
 					cout << "See you next time!\n";
+					itf.save();
+					clsItf.save();
 					exit(0);
 					break;
 				}
@@ -124,6 +126,8 @@ void WrapUpMenu(Interface& itf, ClassInterface& clsItf, User* usr, int const ath
 					break;
 				default:
 					cout << "See you next time!\n";
+					itf.save();
+					clsItf.save();
 					exit(0);
 					break;
 				}

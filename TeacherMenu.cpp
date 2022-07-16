@@ -8,7 +8,7 @@ int TeacherMenu::showMenu() {
 		<< "1.Show GPA info;\n"
 		<< "2.Register a class that you teach;\n"
 		<< "3.Upload GPA info;\n"
-		<< "4.Show class info;\n"
+		/*<< "4.Show class info;\n"*/
 		<< "0.Exit system;\n";
 	int chc;
 	cin >> chc;

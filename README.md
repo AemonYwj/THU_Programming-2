@@ -120,9 +120,46 @@ But remember from here on in,
    1. [x] 主菜单
    2. [x] 教师菜单
    3. [x] 学生菜单
-4. [ ] main.cpp进度**--------**---------------> 
+4. [ ] main.cpp进度**-----------------**------> 
+
+>Look at where you are.  
+Look at where you started.  
+The fact that you’re alive is a miracle.  
+Just stay alive, that would be enough!  
+And if your wife could share a fraction of your time,  
+If I could grant you peace of mind,  
+Would that be enough?
 
 
+### Sol 5
+
+羽毛球害人。
+
+### Sol 6
+
+终于把main.cpp搞完了，开始debug
+1. [x] 数据类的大体内容
+   1. [x] 人员类User
+   2. [x] 课程类Class
+2. [x] 操纵类的大体内容
+   1. [x] 人员操纵类Interface
+   2. [x] 课程操纵类ClassInterface
+   3. [x] 补充一些操纵函数
+3. [x] 菜单类的大体内容
+   1. [x] 主菜单
+   2. [x] 教师菜单
+   3. [x] 学生菜单
+4. [x] main.cpp进度**-----------------------**> 
+
+>I wrote my way out of hell！  
+I wrote my way to revolution！  
+I was louder than the crack in the bell！  
+I wrote Eliza love letters until she fell！  
+I wrote about The Constitution and defended it well！  
+And in the face of ignorance and resistance,  
+I wrote financial systems into existence！  
+And when my prayers to God were met with indifference,  
+I picked up a pen, I wrote my own deliverance！！！  
 
 ---
 

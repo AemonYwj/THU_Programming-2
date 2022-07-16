@@ -22,6 +22,7 @@ ofstream& operator<< (ofstream& ofs, const Class& cls) {
 	{
 		ofs << " GPA " << newptr->stdt->getId() << " "
 			<< newptr->grade;
+		newptr = newptr->nxstdt;
 	}
 	ofs << endl;
 	return ofs;
@@ -58,7 +59,7 @@ bool Class::deleteStudent(User* usr) {
 	int i = 0;
 	while (ptr != NULL)	// judging if this student already exist.
 	{
-		if (id == ptr->stdt->getId()) {
+		if (id == ptr->stdt->getId()) {	// going through all students in the class
 			if (ptr->grade == -1) {
 				tmpPtr->nxstdt = ptr->nxstdt;
 				if (i == 0)
@@ -66,6 +67,8 @@ bool Class::deleteStudent(User* usr) {
 					stdts = stdts->nxstdt;
 				}
 				delete[] ptr;
+				cout << "Successfully withdrawed from class " << clsName << endl;
+				system("pause");
 				return true;
 			}
 			else
@@ -75,7 +78,7 @@ bool Class::deleteStudent(User* usr) {
 			}
 		}
 		i++;
-		tmpPtr = ptr;
+		tmpPtr = ptr;	// the last student in the class
 		ptr = ptr->nxstdt;
 	}
 	return false;

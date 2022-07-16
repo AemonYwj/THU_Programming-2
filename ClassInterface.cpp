@@ -48,27 +48,38 @@ void ClassInterface::init(Interface& intf) {
 	char tmpCh[20];
 	double gd;
 	int index = 0;
-	while (file >> cid >> credit >> clsname >> tchid) {
+	char space = ' ';
+	while (!file.eof()) {
+		file >> cid >> credit >> clsname >> tchid;
 		ListOfStdts* newStdts;
-		while (file >> tmpCh >> stdid >> gd ){}
+		space = file.get();
+		while (space != '\n' && !file.eof()) {
+			file >> tmpCh >> stdid >> gd;
+			space = file.get();
+		}
+		//while (file >> tmpCh >> stdid >> gd) {
+
+		//}
 		index++;
 	}
 	file.close();
 	file.open(ClassFile, ios::in);
-	cNum = index;
+	cNum = index - 1;
 	index = 0;
 	classes = new Class * [cNum];
-	while (file >> cid >> credit >> clsname >> tchid) {
+	for (int i = 0; i < cNum; i++)
+	{
+		file >> cid >> credit >> clsname >> tchid;
 		ListOfStdts* newStdts = NULL;
 		int tchIndex = intf.locOfId(tchid);
-		while (file >> tmpCh >> stdid >> gd)
-		{
+		space = file.get();
+		while (space != '\n' && !file.eof()) {
+			file >> tmpCh >> stdid >> gd;
+			space = file.get();
 			int stdIndex = intf.locOfId(stdid);
 			newStdts = new ListOfStdts(users[stdIndex], gd, newStdts);
 		}
-		classes[index] = new Class(cid, credit, users[tchIndex], clsname, newStdts);
-		index++;
-		
+		classes[i] = new Class(cid, credit, users[tchIndex], clsname, newStdts);
 	}
 	file.close();
 }
@@ -266,6 +277,7 @@ void ClassInterface::registerClass(User* usr) {
 	if (cls->addStudent(usr)) {
 		cout << "Successfully sign up for class " << "'" << cls->clsName << "'!\n";
 	}
+	save();
 	system("pause");
 }
 
@@ -288,6 +300,7 @@ void ClassInterface::withdrawClass(User* usr) {
 	{
 		cout << "Class withdrawal FAILED!.\n";
 	}
+	save();
 }
 
 void ClassInterface::showAllClassInfo(User* usr) {
