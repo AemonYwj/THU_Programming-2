@@ -31,8 +31,8 @@ Interface::Interface() {
 		return;
 	}
 	// else, the file exists and got content.
-	init();
 	file.close();
+	init();
 }
 
 void Interface::init() {
@@ -43,15 +43,18 @@ void Interface::init() {
 	char name[20], pswd[20];
 	int index = 0;
 	User* tempUsr = new User;
-	while (file >> *tempUsr) {
-		index++;
+	char space = ' ';
+	while (!file.eof()) {
+		file >> *tempUsr;
+		index ++;
 	}	// get the total amount of users in the file
 	file.close();
 	file.open(UserFile, ios::in);
 	this->uNum = index;
 	index = 0;
 	users = new User*[uNum];
-	while (file >> *tempUsr) {
+	while (!file.eof()) {
+		file >> *tempUsr;
 		id = tempUsr->getId();
 		authority = tempUsr->getAuthority();
 		strcpy(name, tempUsr->getName());

@@ -25,7 +25,7 @@ int TeacherMenu::show1stMenu() {
 		<< "1.Show the student's average grade of all the class you teach;\n"
 		<< "2.Show detailed GPA info of one specific class\n"
 		<< "3.Show raw data of one specific class\n"
-		<< "0.Exit system;\n";
+		<< "0.Return to previous menu;\n";
 	int chc;
 	cin >> chc;
 	while (chc != 0 && chc != 1 && chc != 2 && chc != 3 && chc != 4) {

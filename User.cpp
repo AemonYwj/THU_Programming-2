@@ -27,6 +27,10 @@ clsls* User::getcIds() {
 	return cIds;
 }
 
+void User::alterCids(clsls* cids) {
+	cIds = cids;
+}
+
 ofstream& operator<<(ofstream& ofs, User& usr) {
 	ofs << "Id: " << usr.id << " Authority: " << usr.authority << " name: "
 		<< usr.name << " Password: " << usr.pswd;
@@ -36,6 +40,7 @@ ofstream& operator<<(ofstream& ofs, User& usr) {
 		ofs << " " << clsptr->cid;
 		clsptr = clsptr->next;
 	}
+	ofs << endl;
 	return ofs;
 }
 
@@ -43,12 +48,18 @@ ifstream& operator>>(ifstream& ifs, User& usr) {
 	char temp[20];
 	char temp1[20];
 	char temp2[20];
-	ifs >> temp >> usr.id >> usr.authority >> temp1
-		>> usr.name >> temp2 >> usr.pswd;
+	char temp3[20];
+	ifs >> temp >> usr.id >> temp1 >> usr.authority >> temp2
+		>> usr.name >> temp3 >> usr.pswd;
 	int cId;
-	while (ifs >> cId)
+	clsls* clsptr = usr.cIds;
+	char space;
+	space = ifs.get();
+	while (space != '\n' && !ifs.eof())
 	{
-
+		ifs >> cId;
+		usr.cIds = new clsls(cId, usr.cIds);
+		space = ifs.get();
 	}
 	return ifs;
 }

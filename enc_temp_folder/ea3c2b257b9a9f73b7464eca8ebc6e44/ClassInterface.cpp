@@ -116,7 +116,9 @@ void ClassInterface::addClass() {
 		{
 			break;
 		}
-		itfPtr->getUsers()[tchIndex]->registerClass(cid);
+		clsls* cids = itfPtr->getUsers()[tchIndex]->getcIds();
+		cids = new clsls(cid, cids);
+		itfPtr->getUsers()[tchIndex]->alterCids(cids);
 	}
 	newClass[cNum] = new Class(cid, credit,tmpTch, clsName);
 	delete[] classes;
@@ -432,7 +434,9 @@ void ClassInterface::lectureClass(User* usr) {
 	delete[] classes;
 	classes = newClass;
 	cNum++;
-	usr->registerClass(cid);
+	clsls* cids = usr->getcIds();
+	cids = new clsls(cid, cids);
+	usr->alterCids(cids);
 	itfPtr->save();
 	save();
 }

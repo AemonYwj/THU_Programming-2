@@ -44,6 +44,7 @@ void WrapUpMenu(Interface& itf, ClassInterface& clsItf, User* usr, int const ath
 	while (flag)
 	{
 		chc = showMenu(mn, ath, 0);	
+		flag1 = true;
 		switch (ath)	// take different measures with different users
 		{
 		case 0:		// students
@@ -71,9 +72,11 @@ void WrapUpMenu(Interface& itf, ClassInterface& clsItf, User* usr, int const ath
 					break;
 				case 2:	// choose Register class
 					clsItf.registerClass(usr);
+					flag1 = false;
 					break;
 				case 3:	// withdraw from one class
 					clsItf.withdrawClass(usr);
+					flag1 = false;
 					break;
 				default:	// Exit System
 					cout << "See you next time!\n";
@@ -92,29 +95,35 @@ void WrapUpMenu(Interface& itf, ClassInterface& clsItf, User* usr, int const ath
 					switch (chc1)
 					{
 					case 1:
-						clsItf.showAllGPAInfo(usr);
+						clsItf.showAllClassInfo(usr);
 						break;
 					case 2:
-						clsItf.showOneSpecGPAInfo(usr);
+						clsItf.showDetailedInfo(usr);
 						break;
 					case 3:
-						clsItf.calGPA(usr);
+						clsItf.showRawData(usr);
 						break;
 					default:
 						flag1 = false;
 						break;
 					}
 					break;
+				case 2:	// Register a class;
+					clsItf.lectureClass(usr);
+					flag1 = false;
+					break;
+				case 3:
+					clsItf.uploadGPA(usr);
+					flag1 = false;
+					break;
 				default:
+					cout << "See you next time!\n";
+					exit(0);
 					break;
 				}
 			}
-
-
 			break;
 		default:
-			
-
 			break;
 		}
 	}

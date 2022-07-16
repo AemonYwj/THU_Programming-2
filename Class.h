@@ -27,7 +27,10 @@ public:
 	double getHighestGPA();	// return the highest GPA in this class, -1 if none has any grade
 	double getLowestGPA();	// return the lowest  GPA in this class, -1 if none has any grade
 	ListOfStdts* getLowestStu();
-	
+	ListOfStdts* getFailedStu();
+	ListOfStdts* getPassedStu();
+	int failedStuNum();
+	int passedStuNum();
 };
 
 

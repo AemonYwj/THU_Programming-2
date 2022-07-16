@@ -181,3 +181,74 @@ ListOfStdts* Class::getLowestStu() {
 	}
 	return output;
 }
+
+
+ListOfStdts* Class::getFailedStu() {
+	double maxGPA = getHighestGPA();
+	ListOfStdts* ptr = stdts;
+	ListOfStdts* output = NULL;
+	if (maxGPA == -1)
+	{
+		cout << "No grade have been uploaded, please upload the grade infomation first.\n";
+		return NULL;
+	}
+	else
+	{
+		while (ptr != NULL)
+		{
+			if (ptr->grade < 1.0)
+			{
+				output = new ListOfStdts(ptr->stdt, ptr->grade, output);
+			}
+			ptr = ptr->nxstdt;
+		}
+	}
+	return output;
+}
+
+ListOfStdts* Class::getPassedStu() {
+	double maxGPA = getHighestGPA();
+	ListOfStdts* ptr = stdts;
+	ListOfStdts* output = NULL;
+	if (maxGPA == -1)
+	{
+		cout << "No grade have been uploaded, please upload the grade infomation first.\n";
+		return NULL;
+	}
+	else
+	{
+		while (ptr != NULL)
+		{
+			if (ptr->grade > 1.0)
+			{
+				output = new ListOfStdts(ptr->stdt, ptr->grade, output);
+			}
+			ptr = ptr->nxstdt;
+		}
+	}
+	return output;
+}
+
+int Class::failedStuNum() {
+	ListOfStdts* failed = this->getFailedStu();
+	ListOfStdts* ptr = failed;
+	int output = 0;
+	while (ptr != NULL) {
+		output += 1;
+		ptr = ptr->nxstdt;
+	}
+	delete[] failed;
+	return output;
+}
+
+int Class::passedStuNum() {
+	ListOfStdts* passed = this->getPassedStu();
+	ListOfStdts* ptr = passed;
+	int output = 0;
+	while (ptr != NULL) {
+		output += 1;
+		ptr = ptr->nxstdt;
+	}
+	delete[] passed;
+	return output;
+}

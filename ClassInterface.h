@@ -17,6 +17,9 @@ public:
 
 	void showAllClassInfo(User* usr);	// for teacher
 	void showDetailedInfo(User* usr);	// for teacher
+	void showRawData(User* usr);	// for teacher
+	void lectureClass(User* usr);	// for teacher
+	void uploadGPA(User* usr);		// for teacher
 
 	void showAllGPAInfo(User* usr);	// for student
 	void showOneSpecGPAInfo(User* usr);	// for student

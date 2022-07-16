@@ -29,6 +29,7 @@ public:
 	clsls* getcIds();
 	bool registerClass(int cid);	// cid meaning the id of the class this user wish to attend/lecture/withdraw
 	bool withdrawClass(int cid);
+	void alterCids(clsls* cids);
 protected:
 	clsls* cIds; // the list of class ids
 	int authority;	// to distinguish pupils and teachers, 0 for stus, 1 for teachers.
