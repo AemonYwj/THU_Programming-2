@@ -50,6 +50,7 @@ void WrapUpMenu(Interface& itf, ClassInterface& clsItf, User* usr, int const ath
 		case 0:		// students
 			while (flag1)
 			{
+				
 				switch (chc)
 				{
 				case 1:	// choose show grade
@@ -73,10 +74,12 @@ void WrapUpMenu(Interface& itf, ClassInterface& clsItf, User* usr, int const ath
 				case 2:	// choose Register class
 					clsItf.registerClass(usr);
 					flag1 = false;
+					itf.save();
 					break;
 				case 3:	// withdraw from one class
 					clsItf.withdrawClass(usr);
 					flag1 = false;
+					itf.save();
 					break;
 				default:	// Exit System
 					cout << "See you next time!\n";
@@ -88,6 +91,7 @@ void WrapUpMenu(Interface& itf, ClassInterface& clsItf, User* usr, int const ath
 		case 1:	// teacher
 			while (flag1)
 			{
+				itf.save();
 				switch (chc)
 				{
 				case 1:	// show GPA
@@ -111,10 +115,12 @@ void WrapUpMenu(Interface& itf, ClassInterface& clsItf, User* usr, int const ath
 				case 2:	// Register a class;
 					clsItf.lectureClass(usr);
 					flag1 = false;
+					itf.save();
 					break;
 				case 3:
 					clsItf.uploadGPA(usr);
 					flag1 = false;
+					itf.save();
 					break;
 				default:
 					cout << "See you next time!\n";

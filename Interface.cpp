@@ -50,10 +50,11 @@ void Interface::init() {
 	}	// get the total amount of users in the file
 	file.close();
 	file.open(UserFile, ios::in);
-	this->uNum = index;
+	this->uNum = index-1;
 	index = 0;
+	tempUsr = new User;
 	users = new User*[uNum];
-	while (!file.eof()) {
+	for (index = 0; index < uNum; index++) {
 		file >> *tempUsr;
 		id = tempUsr->getId();
 		authority = tempUsr->getAuthority();
@@ -65,7 +66,6 @@ void Interface::init() {
 		else if (authority == 1)
 			usr = new Teacher(id, name, pswd, tempUsr->getcIds());
 		users[index] = usr;
-		index++;
 		// there may be a problem of over using the memory space...
 		// I am not sure anyway... will fix it someday, maybe, if I could catch the ddl...
 	}
@@ -203,7 +203,7 @@ void Interface::addUser() {
 			newCls = new clsls(classid, newCls);
 			cin >> classid;
 		}
-		newUsrs[uNum+1] = new Teacher(id, name, pswd, newCls);
+		newUsrs[uNum] = new Teacher(id, name, pswd, newCls);
 		delete[] users;	
 		users = newUsrs;
 		break;

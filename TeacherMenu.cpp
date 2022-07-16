@@ -3,6 +3,7 @@
 using namespace std;
 
 int TeacherMenu::showMenu() {
+	system("cls");
 	cout << "Please choose a operation by entering the starting serial number;\n"
 		<< "1.Show GPA info;\n"
 		<< "2.Register a class that you teach;\n"

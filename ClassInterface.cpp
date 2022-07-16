@@ -433,7 +433,6 @@ void ClassInterface::lectureClass(User* usr) {
 	classes = newClass;
 	cNum++;
 	usr->registerClass(cid);
-	itfPtr->save();
 	save();
 }
 

@@ -4,7 +4,7 @@
 using namespace std;
 
 User::~User() {
-	delete[] cIds;
+	//delete[] cIds;
 }
 
 User::User(){
@@ -52,9 +52,9 @@ ifstream& operator>>(ifstream& ifs, User& usr) {
 	ifs >> temp >> usr.id >> temp1 >> usr.authority >> temp2
 		>> usr.name >> temp3 >> usr.pswd;
 	int cId;
-	clsls* clsptr = usr.cIds;
 	char space;
 	space = ifs.get();
+	usr.cIds = NULL;
 	while (space != '\n' && !ifs.eof())
 	{
 		ifs >> cId;
