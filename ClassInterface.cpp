@@ -366,6 +366,7 @@ void ClassInterface::showDetailedInfo(User* usr) {
 	cout << "The lowest score is " << cls->getLowestGPA() << endl;
 	cout << "There are totally " << cls->passedStuNum() << " students who passed the class, ";
 	cout << "and " << cls->failedStuNum() << " students who failed the class, " << endl;
+	system("pause");
 }
 
 void ClassInterface::showRawData(User* usr) {
