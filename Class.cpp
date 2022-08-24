@@ -93,7 +93,7 @@ double Class::getAveGPA() {
 	{
 		if (ptr->grade != -1)	// if there is no grade info, the grade of students will be set to the default -1
 		{
-			totalGPA += 1;
+			totalGPA += stdts->grade;
 			stdtNum += 1;
 		}
 		ptr = ptr->nxstdt;

@@ -244,7 +244,7 @@ void ClassInterface::calGPA(User* usr) {
 			if (stdId == id && stdts->grade != -1)
 			{
 				totalCrd += cls->credit;
-				totalGpa += stdts->grade;
+				totalGpa += stdts->grade * cls->credit;
 			}
 			stdts = stdts->nxstdt;
 		}
