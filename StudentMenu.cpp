@@ -15,6 +15,7 @@ int StudentMenu::showMenu() {
 		cout << "Please enter the serial number of the operation, such as 1 for 'Show GPA info'.\n";
 		cout << "No other input will be seen as valid.\n";
 		cin >> chc;
+		system("pause");	
 	}
 	return  chc;
 }
