@@ -29,7 +29,7 @@
 
 ## 设计进度
 
-### Sol 1
+### DAY 1
 
 考虑了一些系统需求
 1. **用户**：学生和老师
@@ -53,7 +53,7 @@ Will they know what you overcame?
 Will they know you rewrote the game?  
 The world will never be the same, oh~
 
-### Sol 2
+### DAY 2
 
 添加了一个新的类：菜单类-->用于展示菜单
 
@@ -80,7 +80,7 @@ No matter what they tell you!
 >
 >They’ll tell the story of tonight~
 
-### Sol 3
+### DAY 3
 
 搭建了系统的框架，包括
 1. [x] 数据类的大体内容
@@ -106,7 +106,7 @@ I know that greatness lies in you.
 But remember from here on in,  
 **History has its eyes on you.** 
 
-### Sol 4
+### DAY 4
 
 继续完善了main.cpp，添加了许多操纵函数，包括选课、退课、计算GPA等等，预计今天可以完成所有程序的编写，明天开始debug
 1. [x] 数据类的大体内容
@@ -131,11 +131,11 @@ If I could grant you peace of mind,
 Would that be enough?
 
 
-### Sol 5
+### DAY 5
 
 羽毛球害人。
 
-### Sol 6
+### DAY 6
 
 终于把main.cpp搞完了，开始debug
 1. [x] 数据类的大体内容
@@ -160,6 +160,12 @@ And in the face of ignorance and resistance,
 I wrote financial systems into existence！  
 And when my prayers to God were met with indifference,  
 I picked up a pen, I wrote my own deliverance！！！  
+
+### DAY idk
+
+离ddl还有10天，重写一次代码其实还来得及，但是说实话有点懒了……  
+为啥我会用这么蠢的办法去存取数据？为啥不搜一下C++的多映射库嘞……
+重写的话就是删掉登录部分，做一个纯粹的数据管理，然后用一下multimap做课程和学号的映射。
 
 ---
 
