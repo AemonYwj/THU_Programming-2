@@ -28,13 +28,13 @@ private:
 
 class Student
 {
+public:
+    Student(char nm[],char id[]);
+    ~Student();
 private:
     char name[20];
     char id[20];
     int authority = 0;
-public:
-    Student(char nm[],char id[]);
-    ~Student();
 };
 
 // The constructor of Student
