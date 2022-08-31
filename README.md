@@ -68,7 +68,7 @@ The world will never be the same, oh~
    1. [x] 主菜单
    2. [ ] 教师菜单
    3. [ ] 学生菜单
-4. [ ] main.cpp进度**---**--------------------> 
+4. [ ] main.cpp进度 **---**--------------------> 
 
 >Raise a glass to freedom,  
 Something they can never take away,  
@@ -94,7 +94,7 @@ No matter what they tell you!
    1. [x] 主菜单
    2. [x] 教师菜单
    3. [x] 学生菜单
-4. [ ] main.cpp进度**----**-------------------> 
+4. [ ] main.cpp进度 **----**-------------------> 
 
 >Let me tell you what I wish I’d known,  
 When I was young and dreamed of glory:  
@@ -120,7 +120,7 @@ But remember from here on in,
    1. [x] 主菜单
    2. [x] 教师菜单
    3. [x] 学生菜单
-4. [ ] main.cpp进度**-----------------**------> 
+4. [ ] main.cpp进度 **-----------------**------> 
 
 >Look at where you are.  
 Look at where you started.  
@@ -149,7 +149,7 @@ Would that be enough?
    1. [x] 主菜单
    2. [x] 教师菜单
    3. [x] 学生菜单
-4. [x] main.cpp进度**-----------------------**> 
+4. [x] main.cpp进度 **-----------------------**> 
 
 >I wrote my way out of hell！  
 I wrote my way to revolution！  
@@ -159,7 +159,7 @@ I wrote about The Constitution and defended it well！
 And in the face of ignorance and resistance,  
 I wrote financial systems into existence！  
 And when my prayers to God were met with indifference,  
-I picked up a pen, I wrote my own deliverance！！！  
+I picked up a pen, I wrote my own deliverance！  
 
 ### DAY idk
 
