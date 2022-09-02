@@ -39,7 +39,7 @@ protected:
 
 	//all users in the system
 	User** users;	
-
+	 
 	//the logined user
 	User* lgUsr;	
 	

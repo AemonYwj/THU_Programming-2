@@ -1,8 +1,9 @@
 #pragma once
 #include "Menu.h"
+#include "Teacher.h"
 
 
-class TeacherMenu:public Menu
+class TeacherMenu:public Menu,public Teacher
 {
 public:
 	virtual int showMenu();
