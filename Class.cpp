@@ -16,7 +16,7 @@ ofstream& operator<< (ofstream& ofs, const Class& cls) {
 	ofs << cls.cId << " "
 		<< cls.credit << " "
 		<< cls.clsName << " "
-		<< cls.teacher->getId() << " ";
+		<< cls.teacher->getId();
 	ListOfStdts* newptr = cls.stdts;
 	while (newptr != NULL)
 	{
@@ -40,7 +40,7 @@ ifstream& operator>> (ifstream& ifs, Class& cls) {
 bool Class::addStudent(User* usr) {
 	ListOfStdts* ptr = stdts;
 	int id = usr->getId();
-	while (ptr!=NULL)	// judging if this student already exist.
+	while (ptr!=NULL)	//judging if this student already exist.
 	{
 		if (id == ptr->stdt->getId()) {
 			cout << "This Student already Exist, Please try again.\n";
@@ -57,9 +57,9 @@ bool Class::deleteStudent(User* usr) {
 	ListOfStdts* tmpPtr = ptr;
 	int id = usr->getId();
 	int i = 0;
-	while (ptr != NULL)	// judging if this student already exist.
+	while (ptr != NULL)	//judging if this student already exist.
 	{
-		if (id == ptr->stdt->getId()) {	// going through all students in the class
+		if (id == ptr->stdt->getId()) {	//going through all students in the class
 			if (ptr->grade == -1) {
 				tmpPtr->nxstdt = ptr->nxstdt;
 				if (i == 0)
@@ -78,7 +78,7 @@ bool Class::deleteStudent(User* usr) {
 			}
 		}
 		i++;
-		tmpPtr = ptr;	// the last student in the class
+		tmpPtr = ptr;	//the last student in the class
 		ptr = ptr->nxstdt;
 	}
 	return false;
@@ -91,7 +91,7 @@ double Class::getAveGPA() {
 	int stdtNum = 0;
 	while (ptr != NULL)
 	{
-		if (ptr->grade != -1)	// if there is no grade info, the grade of students will be set to the default -1
+		if (ptr->grade != -1)	//if there is no grade info, the grade of students will be set to the default -1
 		{
 			totalGPA += stdts->grade;
 			stdtNum += 1;

@@ -12,8 +12,8 @@ private:
 class ListOfStdts {
 public:
 	User* stdt;
-	ListOfStdts* nxstdt;	// pointing to the next student;
-	double grade;	// the grade of this course;
+	ListOfStdts* nxstdt;	//pointing to the next student;
+	double grade;	//the grade of this course;
 
 	ListOfStdts(User* std, double g = -1, ListOfStdts* next = NULL) {
 		stdt = std;

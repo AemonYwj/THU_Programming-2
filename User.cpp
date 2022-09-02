@@ -68,7 +68,11 @@ char* User::getPswd() {
 	return this->pswd;
 }
 
+
+//Input: the id of the class
+
 bool User::registerClass(int cid) {
+	
 	clsls* ptr = cIds;
 	while (ptr != NULL)
 	{

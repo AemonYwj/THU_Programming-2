@@ -8,7 +8,7 @@ using namespace std;
 Interface::Interface() {
 	fstream file;
 	file.open(UserFile, ios::in);
-	// detect if the file exist, if not, end the program
+	//detect if the file exist, if not, end the program
 	if (!file.is_open()) {
 		cout << "No Userfile! Please CHECK! " << endl
 			<< "System will SHUT DOWN." << endl;
@@ -19,7 +19,7 @@ Interface::Interface() {
 		exit(-1);
 		return;
 	}
-	// detect if the file contains any info by check if it's the end of file
+	//detect if the file contains any info by check if it's the end of file
 	char ch;
 	file >> ch;
 	if (file.eof())
@@ -30,7 +30,7 @@ Interface::Interface() {
 		file.close();
 		return;
 	}
-	// else, the file exists and got content.
+	//else, the file exists and got content.
 	file.close();
 	init();
 }
@@ -47,7 +47,7 @@ void Interface::init() {
 	while (!file.eof()) {
 		file >> *tempUsr;
 		index ++;
-	}	// get the total amount of users in the file
+	}	//get the total amount of users in the file
 	file.close();
 	file.open(UserFile, ios::in);
 	this->uNum = index-1;
@@ -66,8 +66,8 @@ void Interface::init() {
 		else if (authority == 1)
 			usr = new Teacher(id, name, pswd, tempUsr->getcIds());
 		users[index] = usr;
-		// there may be a problem of over using the memory space...
-		// I am not sure anyway... will fix it someday, maybe, if I could catch the ddl...
+		//there may be a problem of over using the memory space...
+		//I am not sure anyway... will fix it someday, maybe, if I could catch the ddl...
 	}
 	file.close();
 }
@@ -77,7 +77,7 @@ int Interface::login(User* &usr) {
 	while (flag) {
 		switch (this->uNum)
 		{
-		case 0:	// no any Users
+		case 0:	//no any Users
 			cout << "Please initiate the system by signing up: \n";
 			addUser();
 			break;
@@ -138,8 +138,8 @@ Interface::~Interface() {
 }
 
 void Interface::addUser() {
-	User** newUsrs = new User * [uNum+1];	// creating a temperary array to store the data.
-	if (this->users != NULL) { // copying original space into the new array
+	User** newUsrs = new User * [uNum+1];	//creating a temperary array to store the data.
+	if (this->users != NULL) { //copying original space into the new array
 		for (int i = 0; i < this->uNum; i++) {
 			newUsrs[i] = this->users[i];
 		}
@@ -181,8 +181,8 @@ void Interface::addUser() {
 		}
 		newUsrs[uNum] = new Student(id, name, pswd,newCls);
 
-		delete[] users;	// release the original space
-		users = newUsrs;	// relocating the ptr
+		delete[] users;	//release the original space
+		users = newUsrs;	//relocating the ptr
 		break;
 	case 2:
 		cout << "Please enter your id\n";
@@ -217,7 +217,7 @@ int Interface::locOfId(int id) {
 	int index = -1;
 	for (int i = 0; i < this->uNum; i++)
 	{
-		if (users[i]->getId() == id) { // to find the User
+		if (users[i]->getId() == id) { //to find the User
 			index = i;
 			break;
 		}

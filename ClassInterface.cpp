@@ -9,7 +9,7 @@ using namespace std;
 ClassInterface::ClassInterface(Interface& intf) {
 	fstream file;
 	file.open(ClassFile, ios::in);
-	// detect if the file exist, if not, end the program
+	//detect if the file exist, if not, end the program
 	if (!file.is_open()) {
 		cout << "No Classfile! Please CHECK! " << endl
 			<< "System will SHUT DOWN." << endl;
@@ -20,7 +20,7 @@ ClassInterface::ClassInterface(Interface& intf) {
 		exit(-1);
 		return;
 	}
-	// detect if the file contains any info by check if it's the end of file
+	//detect if the file contains any info by check if it's the end of file
 	char ch;
 	file >> ch;
 	if (file.eof())
@@ -31,7 +31,7 @@ ClassInterface::ClassInterface(Interface& intf) {
 		file.close();
 		return;
 	}
-	// else, the file exists and got content.
+	//else, the file exists and got content.
 	file.close();
 	init(intf);
 }
@@ -39,12 +39,12 @@ ClassInterface::ClassInterface(Interface& intf) {
 void ClassInterface::init(Interface& intf) {
 	ifstream file;
 	file.open(ClassFile, ios::in);
-	char clsname[20];	// class name
-	int cid = 0, credit = 1;	// class id and credit 
+	char clsname[20];	//class name
+	int cid = 0, credit = 1;	//class id and credit 
 	User** users = intf.getUsers();
 	User* tmpStu = new User;	
 	User* tmpTch = new User;
-	int tchid, stdid;	// teacher id; student id; grade
+	int tchid, stdid;	//teacher id; student id; grade
 	char tmpCh[20];
 	double gd;
 	int index = 0;
@@ -57,9 +57,6 @@ void ClassInterface::init(Interface& intf) {
 			file >> tmpCh >> stdid >> gd;
 			space = file.get();
 		}
-		//while (file >> tmpCh >> stdid >> gd) {
-
-		//}
 		index++;
 	}
 	file.close();
@@ -92,7 +89,7 @@ ClassInterface::~ClassInterface() {
 void ClassInterface::addClass() {
 	Class** newClass = new Class * [cNum + 1];
 	if (this->classes != NULL) {
-		for (int i = 0; i < cNum; i++) {	// copying oreiginal space
+		for (int i = 0; i < cNum; i++) {	//copying oreiginal space
 			newClass[i] = classes[i];
 		}
 	}
@@ -141,7 +138,7 @@ int ClassInterface::locOfcId(int id) {
 	int index = -1;
 	for (int i = 0; i < this->cNum; i++)
 	{
-		if (classes[i]->cId == id) { // to find the User
+		if (classes[i]->cId == id) { //to find the User
 			index = i;
 			break;
 		}
@@ -161,12 +158,12 @@ void ClassInterface::save() {
 void ClassInterface::showAllGPAInfo(User* usr) {
 	clsls* cids = usr->getcIds();
 	int id = usr->getId();
-	while (cids != NULL)	// goint through all classes of this user
+	while (cids != NULL)	//goint through all classes of this user
 	{
 		int index = locOfcId(cids->cid);
 		Class* cls = classes[index];
 		ListOfStdts* stdts = cls->stdts;
-		while (stdts != NULL)	// going through all student of this specific class
+		while (stdts != NULL)	//going through all student of this specific class
 		{
 			int stdId = stdts->stdt->getId();
 			if (stdId == id)
@@ -228,6 +225,7 @@ void ClassInterface::showOneSpecGPAInfo(User* usr) {
 	system("pause");
 }
 
+
 void ClassInterface::calGPA(User* usr) {
 	clsls* cids = usr->getcIds();
 	int id = usr->getId();
@@ -261,15 +259,20 @@ void ClassInterface::calGPA(User* usr) {
 	system("pause");
 }
 
+
 void ClassInterface::registerClass(User* usr) {
 	int cid;
 	cout << "Please enter the id of the class you'd like to attend\n";
 	cin >> cid;
-	usr->registerClass(cid);
+	
 	int index = locOfcId(cid);
 	if (index == -1)
 	{
 		cout << "No class with this id exist, please try again.\n";
+		system("pause");
+		return;
+	}
+	if (!usr->registerClass(cid)) {
 		system("pause");
 		return;
 	}
@@ -299,14 +302,16 @@ void ClassInterface::withdrawClass(User* usr) {
 	else
 	{
 		cout << "Class withdrawal FAILED!.\n";
+		return;
 	}
+	usr->withdrawClass(cid);
 	save();
 }
 
 void ClassInterface::showAllClassInfo(User* usr) {
 	clsls* cids = usr->getcIds();
 	int id = usr->getId();
-	while (cids != NULL)	// going through all classes of this user
+	while (cids != NULL)	//going through all classes of this user
 	{
 		int index = locOfcId(cids->cid);
 		Class* cls = classes[index];
@@ -334,7 +339,7 @@ void ClassInterface::showDetailedInfo(User* usr) {
 			return;
 		}
 	}
-	while (cids != NULL)	// goint through all classes of this user
+	while (cids != NULL)	//goint through all classes of this user
 	{
 		if (cids->cid = cid)
 		{
@@ -346,7 +351,7 @@ void ClassInterface::showDetailedInfo(User* usr) {
 	{
 		cout << "You do not lecture on this class, please enter the class id again.\n"; \
 			cin >> cid;
-		while (cids != NULL)	// goint through all classes of this user
+		while (cids != NULL)	//goint through all classes of this user
 		{
 			if (cids->cid = cid)
 			{
@@ -386,7 +391,7 @@ void ClassInterface::showRawData(User* usr) {
 			return;
 		}
 	}
-	while (cids != NULL)	// goint through all classes of this user
+	while (cids != NULL)	//goint through all classes of this user
 	{
 		if (cids->cid = cid)
 		{
@@ -398,7 +403,7 @@ void ClassInterface::showRawData(User* usr) {
 	{
 		cout << "You do not lecture on this class, please enter the class id again.\n"; \
 			cin >> cid;
-		while (cids != NULL)	// goint through all classes of this user
+		while (cids != NULL)	//goint through all classes of this user
 		{
 			if (cids->cid = cid)
 			{
@@ -425,7 +430,7 @@ void ClassInterface::showRawData(User* usr) {
 void ClassInterface::lectureClass(User* usr) {
 	Class** newClass = new Class * [cNum + 1];
 	if (this->classes != NULL) {
-		for (int i = 0; i < cNum; i++) {	// copying oreiginal space
+		for (int i = 0; i < cNum; i++) {	//copying oreiginal space
 			newClass[i] = classes[i];
 		}
 	}
@@ -467,7 +472,7 @@ void ClassInterface::uploadGPA(User* usr) {
 			return;
 		}
 	}
-	while (cids != NULL)	// goint through all classes of this user
+	while (cids != NULL)	//goint through all classes of this user
 	{
 		if (cids->cid = cid)
 		{
@@ -479,7 +484,7 @@ void ClassInterface::uploadGPA(User* usr) {
 	{
 		cout << "You do not lecture on this class, please enter the class id again.\n"; \
 			cin >> cid;
-		while (cids != NULL)	// goint through all classes of this user
+		while (cids != NULL)	//goint through all classes of this user
 		{
 			if (cids->cid = cid)
 			{
