@@ -119,6 +119,7 @@ int Interface::login(User* &usr) {
 					this->lgUsr = users[index];
 					system("cls");
 					cout << "Welcome to the GPA management system " << usr->getName() << endl;
+					system("pause");
 					return users[index]->getAuthority();
 					break;
 				}

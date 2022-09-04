@@ -1,5 +1,6 @@
-Id: 2020010482 Authority: 0 name: ywj Password: 123456 3 2 1
-Id: 2020010483 Authority: 0 name: 薛壮壮 Password: 123456 3 2 1
-Id: 2020010484 Authority: 0 name: 高成善 Password: 123456 3 2 1
-Id: 111 Authority: 1 name: 测试教师1 Password: 123456 2 1
-Id: 222 Authority: 1 name: 测试教师2 Password: 123456 4 3
+Id: 2020010482 Authority: 0 name: ywj Password: 123456 3 1 2
+Id: 2020010483 Authority: 0 name: 薛壮壮 Password: 123456 1 2 3
+Id: 2020010484 Authority: 0 name: 高成善 Password: 123456 1 2 3
+Id: 111 Authority: 1 name: 测试教师1 Password: 123456 1 2
+Id: 222 Authority: 1 name: 测试教师2 Password: 123456 3 4
+Id: 2020010490 Authority: 0 name: 马冬梅 Password: password 2

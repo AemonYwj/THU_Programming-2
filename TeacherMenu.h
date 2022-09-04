@@ -3,7 +3,7 @@
 #include "Teacher.h"
 
 
-class TeacherMenu:public Menu,public Teacher
+class TeacherMenu:public Menu
 {
 public:
 	virtual int showMenu();

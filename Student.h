@@ -9,16 +9,24 @@ private:
 
 };
 
+
+
 class ListOfStdts {
 public:
 	User* stdt;
-	ListOfStdts* nxstdt;	//pointing to the next student;
-	double grade;	//the grade of this course;
 
+	//pointing to the next student;
+	ListOfStdts* nxstdt;	
+
+	//the grade of this course;
+	double grade;	
+	
+	//INPUT: User* std, the ptr to the stud that is wished to be added to the LisfOfStdts object
+	//	double g, the grade of the student. -1 by default, meaning no grade have been uploaded yet
+	//	ListOfStdts* next, pointing to the next ListOfStdts object, in most times self
 	ListOfStdts(User* std, double g = -1, ListOfStdts* next = NULL) {
 		stdt = std;
 		grade = g;
 		nxstdt = next;
 	}
-
 };
